@@ -9,7 +9,7 @@ pipeline {
     stages {
         stage('Clone Repository') {
             steps {
-                git 'https://github.com/Rohith766https://github.com/Rohith766/jenkins-k8s-ci-cd.git/jenkins-k8s-ci-cd.git'
+                git 'https://github.com/Rohith766/jenkins-k8s-ci-cd.git'
             }
         }
 
