@@ -5,14 +5,7 @@ pipeline {
         IMAGE_NAME = "flask-app"
         DOCKER_HUB_USER = "rohitgovindaraju"
     }
-
-    stages {
-        stage('Clone Repository') {
-            steps {
-                git 'https://github.com/Rohith766/jenkins-k8s-ci-cd.git'
-            }
-        }
-
+    
         stage('Build Docker Image') {
             steps {
                 dir('app') {
