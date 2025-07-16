@@ -5,7 +5,8 @@ pipeline {
         IMAGE_NAME = "flask-app"
         DOCKER_HUB_USER = "rohitgovindaraju"
     }
-    
+
+    stages {
         stage('Build Docker Image') {
             steps {
                 dir('app') {
@@ -19,7 +20,7 @@ pipeline {
         stage('Push Docker Image') {
             steps {
                 script {
-                    withCredentials([usernamePassword(credentialsId: 'dockerhub-creds', usernameVariable: 'rohitgovindaraju', passwordVariable: 'Asdfghjkl@1')]) {
+                    withCredentials([usernamePassword(credentialsId: 'dockerhub-creds', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
                         sh "echo $PASSWORD | docker login -u $USERNAME --password-stdin"
                         sh "docker push $DOCKER_HUB_USER/$IMAGE_NAME:latest"
                     }
@@ -27,7 +28,7 @@ pipeline {
             }
         }
 
-        stage('Deploy to Kubernetes') {
+        stage('Deploy to Kubernetes') { 
             steps {
                 script {
                     sh "kubectl apply -f k8s/deployment.yaml"
